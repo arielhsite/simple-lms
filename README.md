@@ -1,6 +1,6 @@
 # My WordPress Theme
 
-A custom WordPress theme.
+A custom WordPress theme (WIP).
 
 ## Installation
 1. Upload to /wp-content/themes/
