@@ -38,7 +38,6 @@ function cpt_courses() {
 		'has_archive'        => true,
 		'hierarchical'       => false,
 		'menu_position'      => null,
-		'supports'           => array( 'title', 'editor', 'author', 'thumbnail', 'excerpt', 'comments' ),
 	);
 
 	register_post_type( 'courses', $args );
@@ -46,5 +45,39 @@ function cpt_courses() {
 
 add_action( 'init', 'cpt_courses' );
 
+
+/* Adding custom fields for courses */
+
+function cf_courses(){
+	add_meta_box(
+		'cf_courses_id', 			// unique custom field id
+		'Course Details', 			// custom fields name
+		'cf_courses_function',		// functions that will hold the CF content
+		'courses',					// cpt associated with this custom field
+		'normal',					// the position of the cf in the dashboard
+	);
+}
+
+add_action('admin_init','cf_courses');
+
+function cf_courses_function(){
+	?>
+	
+	<p class="cf-title">Subtitle</p>
+	<textarea type="text" class="cf-text"></textarea>
+	
+	<p class="cf-title">Trailer URL</p>
+	<textarea type="text" class="cf-text"></textarea>
+	
+	
+	<style type="text/css">
+		.cf-title{text-align: center;}
+		.cf-text{width:100%;}
+	</style>
+	
+	
+	<?php
+	
+}
 
 ?>
