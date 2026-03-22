@@ -1,6 +1,6 @@
 # Simple LMS WordPress Theme
 
-A simple WordPress LMS theme - Work in progress
+A simple WordPress LMS theme ( Work in progress )
 
 ## Installation
 1. Upload to /wp-content/themes/
