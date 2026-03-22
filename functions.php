@@ -85,6 +85,9 @@ function cf_courses_function(){
 function db_course_details(){
 	global $wpdb;
 	$charset 	= $wpdb->get_charset_collate();
+
+	$table_name = $wpdb->prefix . "course_details";
+	$charset_collate = $wpdb->get_charset_collate();
 	
 	$db_content = "CREATE TABLE $table_name(
 		course_id	BIGINT(20) NOT NULL,
@@ -113,8 +116,6 @@ function save_data($post_data){
 	$trailer 	= $_POST['db_trailer'];
 
 	}
-
-	$table_name = $wpdb->prefix . "course_details";
 
 	$table_name = $wpdb->prefix . "course_details";
 
