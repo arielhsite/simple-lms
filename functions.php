@@ -64,10 +64,10 @@ function cf_courses_function(){
 	?>
 	
 	<p class="cf-title">Subtitle</p>
-	<textarea type="text" class="cf-text"></textarea>
+	<textarea type="text" class="cf-text" name="db_subtitle"></textarea>
 	
 	<p class="cf-title">Trailer URL</p>
-	<textarea type="text" class="cf-text"></textarea>
+	<textarea type="text" class="cf-text" name="db_trailer"></textarea>
 	
 	
 	<style type="text/css">
@@ -79,5 +79,56 @@ function cf_courses_function(){
 	<?php
 	
 }
+
+/* Create database table - course details */
+
+function db_course_details(){
+	global $wpdb;
+	$charset 	= $wpdb->get_charset_collate();
+	
+	$db_content = "CREATE TABLE $table_name(
+		course_id	BIGINT(20) NOT NULL,
+		subtitle	TEXT NOT NULL,
+		trailer 	TEXT NOT NULL,
+		
+		PRIMARY KEY (course_id)
+	) $charset; ";
+	
+	require_once( ABSPATH.'wp-admin/includes/upgrade.php');
+	
+	dbDelta($db_content);
+}
+
+add_action('init', 'db_course_details');
+
+/* saving data to database */
+
+function save_data($post_data){
+	global $wpdb;
+	$course_id = get_the_id();
+
+	if (isset($_POST['db_subtitle']) && isset($_POST['db_trailer'])) {
+
+	$subtitle 	= $_POST['db_subtitle'];
+	$trailer 	= $_POST['db_trailer'];
+
+	}
+
+	$table_name = $wpdb->prefix . "course_details";
+
+	$table_name = $wpdb->prefix . "course_details";
+
+	$wpdb->replace(
+		$table_name,
+		[
+			'course_id' => $course_id,
+			'subtitle' => $subtitle,
+			'trailer' => $trailer
+		]
+	);
+}
+
+add_action('save_post', 'save_data');
+
 
 ?>
