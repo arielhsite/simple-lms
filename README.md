@@ -1,6 +1,6 @@
-# My WordPress Theme
+# Simple LMS WordPress Theme
 
-A custom WordPress theme (WIP).
+A simple WordPress LMS theme - Work in progress
 
 ## Installation
 1. Upload to /wp-content/themes/
